@@ -285,6 +285,9 @@ A função principal que mantém o sistema em execução, verificando os botões
 
 No repositório há uma pasta images que contém uma **tabela do código morse** para pode praticar e testar
 
+## Link do vídeo da aparesentação
+https://drive.google.com/file/d/18RTwHbdvNjdn3vchJ3-gSbTGpBu8hIWH/view?usp=drivesdk
+
 ## 📜 Licença
 Este projeto é de código aberto e pode ser utilizado livremente.
 
