@@ -65,6 +65,20 @@ target_link_libraries(tradutorMorse // Nome da sua pasta
 )
 ```
 
+### Bibliotecas Utilizadas
+
+```cpp
+#include <stdio.h>              // Biblioteca padrão para entrada e saída
+#include "pico/stdlib.h"         // Biblioteca para funcionalidades básicas da Raspberry Pi Pico
+#include "hardware/gpio.h"      // Biblioteca para controle de GPIOs
+#include "hardware/pwm.h"       // Biblioteca para controle de PWM (Pulse Width Modulation)
+#include "hardware/clocks.h"    // Biblioteca para manipulação de clocks
+#include "inc/ssd1306.h"        // Biblioteca para controle do display OLED
+#include "hardware/i2c.h"       // Biblioteca para controle de comunicação I2C
+```
+
+Essas bibliotecas são responsáveis por fornecer as funcionalidades essenciais para a operação do projeto, incluindo controle de entrada/saída, controle do buzzer, manipulação do display OLED, e comunicação via I2C para o display.
+
 ## 📜 Como funciona o código?
 
 ### 📌 Configuração do PWM para o Buzzer
