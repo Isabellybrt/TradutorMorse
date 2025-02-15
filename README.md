@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este projeto implementa um tradutor de código Morse utilizando a placa BitDogLab, que é integrada com placa Raspberry Pi Pico W. O sistema permite que o usuário insira códigos Morse através de um botão e receba a tradução em caracteres alfanuméricos em um display OLED. O sistema também emite feedback sonoro com um buzzer para indicar quando o botão está sendo pressionado.
+Este projeto implementa um tradutor de código Morse utilizando a placa BitDogLab, que é integrada com a placa Raspberry Pi Pico W. O sistema permite que o usuário insira códigos Morse através de um botão e receba a tradução em caracteres alfanuméricos em um display OLED. O sistema também emite feedback sonoro com um buzzer para indicar quando o botão está sendo pressionado.
 
 Desenvolvido em **linguagem C**, este projeto proporciona uma oportunidade para aprender sobre **sistemas embarcados** e o funcionamento do **código Morse**.
 
