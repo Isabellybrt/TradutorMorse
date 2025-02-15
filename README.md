@@ -290,7 +290,7 @@ int main() {
     return 0;
 }
 ```
-A função principal que mantém o sistema em execução, verificando os botões pressionados, tocando os sons do buzzer e atualizando o display OLED com a tradução correspondente.
+A função principal que mantém o sistema em execução, verificando os botões pressionados, tocando os sons do buzzer e atualizando o display OLED com a tradução correspondente. Se o botão do pino 5 for pressionado por menos de 299ms ele vai gerar um ".", e se for pressionado por mais de 299ms ele vai gerar um "-". Já o botão do pino 6 envia o código morse gerado para ser transformada em caractere, se esse botão do pino 6 for pressionada por mais de 1 segundo, ele vai gerar um espaço no display oled, assim sendo possível criar frases utilizando o código morse.
 
 ## Uso
 
