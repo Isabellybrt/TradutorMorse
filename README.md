@@ -29,7 +29,6 @@ https://drive.google.com/file/d/18RTwHbdvNjdn3vchJ3-gSbTGpBu8hIWH/view?usp=drive
 | Botão de entrada de Morse | 5  |
 | Botão de confirmação      | 6  |
 | Buzzer                   | 21 |
-| **I2C (Display OLED)**    |    |
 | SDA                      | 14 |
 | SCL                      | 15 |
 
