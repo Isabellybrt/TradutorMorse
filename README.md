@@ -45,7 +45,7 @@ https://drive.google.com/file/d/18RTwHbdvNjdn3vchJ3-gSbTGpBu8hIWH/view?usp=drive
 
 Para a execução correta do display OLED, é necessário ter a pasta inc, que está disponível no repositório do projeto. Dentro dessa pasta, devem estar os arquivos ssd1306, já incluídos.
 
-Com as pastas inclusa no seu projeto, será necessário configurar no cmakelist.txt essas implementações: 
+Com as pastas inclusa no seu projeto, será necessário configurar o arquivo cmakelist.txt
 
 ### Configuração do CMakeLists.txt
 
