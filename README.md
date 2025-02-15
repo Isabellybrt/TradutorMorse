@@ -6,6 +6,9 @@ Este projeto implementa um tradutor de código Morse utilizando a placa BitDogLa
 
 Desenvolvido em **linguagem C**, este projeto proporciona uma oportunidade para aprender sobre **sistemas embarcados** e o funcionamento do **código Morse**.
 
+## Link do vídeo da aparesentação
+https://drive.google.com/file/d/18RTwHbdvNjdn3vchJ3-gSbTGpBu8hIWH/view?usp=drivesdk
+
 ## 📌 Funcionalidades
 
 - Entrada de código Morse via botão.
@@ -21,25 +24,28 @@ Desenvolvido em **linguagem C**, este projeto proporciona uma oportunidade para 
 
 ## 🚀 GPIOs utilizados:
 
-- **Botão de entrada de Morse**: GPIO 5
-- **Botão de confirmação**: GPIO 6
-- **Buzzer**: GPIO 21
-- **I2C (Display OLED)**:
-  - SDA: GPIO 14
-  - SCL: GPIO 15
+| Componente            | GPIO |
+|----------------------|------|
+| Botão de entrada de Morse | 5  |
+| Botão de confirmação      | 6  |
+| Buzzer                   | 21 |
+| **I2C (Display OLED)**    |    |
+| SDA                      | 14 |
+| SCL                      | 15 |
 
-## Execução
+# 📂 Estrutura do Projeto
 
-### Dependências
+## Pastas do Projeto
 
-- [Pico SDK](https://github.com/raspberrypi/pico-sdk)
-- Biblioteca para o display OLED SSD1306
+**Inc:** Contém os arquivos fundamentais para rodar o display OLED.
 
-### Estrutura do Projeto
+**Images:** Contém a imagem do código Morse para testar a tradução.
 
-Para a execução correta do display OLED, é necessário ter a pasta `inc`, que está disponível no repositório do projeto. Dentro da pasta `inc`, devem estar os arquivos `ssd1306`, que já vêm incluídos nela.
+------------------------------------------------------------------------
 
-Com a pasta inclusa no seu projeto, será necessário configurar no cmakelist.txt essas implementações: 
+Para a execução correta do display OLED, é necessário ter a pasta inc, que está disponível no repositório do projeto. Dentro dessa pasta, devem estar os arquivos ssd1306, já incluídos.
+
+Com as pastas inclusa no seu projeto, será necessário configurar no cmakelist.txt essas implementações: 
 
 ### Configuração do CMakeLists.txt
 
@@ -283,10 +289,7 @@ A função principal que mantém o sistema em execução, verificando os botões
 3. O caractere correspondente é exibido no display OLED.
 4. Para adicionar um espaço entre palavras, mantenha o botão de confirmação pressionado por mais de 1 segundo.
 
-No repositório há uma pasta images que contém uma **tabela do código morse** para pode praticar e testar
-
-## Link do vídeo da aparesentação
-https://drive.google.com/file/d/18RTwHbdvNjdn3vchJ3-gSbTGpBu8hIWH/view?usp=drivesdk
+No repositório há uma pasta images que contém uma **tabela do código morse** para poder praticar e testar
 
 ## 📜 Licença
 Este projeto é de código aberto e pode ser utilizado livremente.
@@ -294,3 +297,5 @@ Este projeto é de código aberto e pode ser utilizado livremente.
 ## Autor
 
 Projeto desenvolvido por Maria Isabelly de Brito Rodrigues.
+
+
