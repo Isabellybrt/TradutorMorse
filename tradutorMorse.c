@@ -5,6 +5,7 @@
 #include "hardware/clocks.h"
 #include "inc/ssd1306.h"
 #include "hardware/i2c.h"
+#include <string.h>
 
 // Definições de pinos
 #define BUTTON_PIN 5          // Pino do botão para entrada de código Morse
@@ -131,6 +132,57 @@ void display_text_inicial() {
     render_on_display(ssd, &frame_area);
 }
 
+void draw_dot(uint8_t *ssd, int x, int y) {
+    // Desenha um pequeno ponto no display
+    for (int dx = 0; dx < 3; dx++) {
+        for (int dy = 0; dy < 3; dy++) {
+            ssd1306_set_pixel(ssd, x + dx, y + dy, true);
+
+        }
+    }
+}
+
+void draw_dash(uint8_t *ssd, int x, int y) {
+    // Desenha um traço (linha horizontal)
+    for (int dx = 0; dx < 8; dx++) {
+        ssd1306_set_pixel(ssd, x + dx, y, true);
+        ssd1306_set_pixel(ssd, x + dx, y + 1, true);
+    
+    }
+}
+
+// Exibe o código morse sendo feito no display OLED
+void display_morse_buffer() {
+    struct render_area frame_area = {
+        .start_column = 0,
+        .end_column = ssd1306_width - 1,
+        .start_page = 0,
+        .end_page = ssd1306_n_pages - 1
+    };
+    calculate_render_area_buffer_length(&frame_area);
+
+    uint8_t ssd[ssd1306_buffer_length];
+    memset(ssd, 0, ssd1306_buffer_length);
+
+    // Define a posição inicial
+    int x = 10, y = 20;
+
+    // Desenha cada caractere Morse na tela
+    for (int i = 0; i < buffer_index; i++) {
+        if (morse_buffer[i] == '.') {
+            draw_dot(ssd, x, y);
+            x += 6;  // Espaço após um ponto
+        } else if (morse_buffer[i] == '-') {
+            draw_dash(ssd, x, y);
+            x += 12;  // Espaço maior após um traço
+        }
+    }
+
+    render_on_display(ssd, &frame_area);
+    sleep_ms(100);
+}
+
+
 // Função principal
 int main() {
     stdio_init_all();  // Inicializa a comunicação serial
@@ -163,6 +215,7 @@ int main() {
     absolute_time_t last_press_time = {0};  // Armazena o tempo da última pressão do botão
     char phrase[100] = "";  // Armazena a frase digitada
 
+    // Trecho do código principal onde o morse_buffer é atualizado
     while (true) {
         // Verifica o estado do botão 5 (entrada de código Morse)
         if (gpio_get(BUTTON_PIN) == 0) {  // Botão pressionado
@@ -185,6 +238,10 @@ int main() {
                 }
 
                 morse_buffer[buffer_index] = '\0';  // Finaliza a string no buffer
+
+                // Exibe o código Morse digitado no display
+                display_morse_buffer();  // Atualiza o display com o novo conteúdo do buffer
+
                 button_pressed = false;
             }
         }
