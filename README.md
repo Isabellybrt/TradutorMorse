@@ -6,10 +6,10 @@ Este projeto implementa um tradutor de código Morse utilizando a placa BitDogLa
 
 Desenvolvido em **linguagem C**, este projeto proporciona uma oportunidade para aprender sobre **sistemas embarcados** e o funcionamento do **código Morse**.
 
-## Link do vídeo da 1° aparesentação - Projeto Final da Capacitação
+## Link do vídeo da 1° apresentação - Projeto Final da Capacitação
 https://drive.google.com/file/d/18RTwHbdvNjdn3vchJ3-gSbTGpBu8hIWH/view?usp=drivesdk
 
-## Link do vídeo da 2° aparesentação - 1° Tarefa da Residência 
+## Link do vídeo da 2° apresentação - 1° Tarefa da Residência 
 https://youtu.be/6ee2_0mJxi4
 
 ## 📌 Funcionalidades
