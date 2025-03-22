@@ -6,8 +6,11 @@ Este projeto implementa um tradutor de código Morse utilizando a placa BitDogLa
 
 Desenvolvido em **linguagem C**, este projeto proporciona uma oportunidade para aprender sobre **sistemas embarcados** e o funcionamento do **código Morse**.
 
-## Link do vídeo da aparesentação
+## Link do vídeo da 1° aparesentação - Projeto Final da Capacitação
 https://drive.google.com/file/d/18RTwHbdvNjdn3vchJ3-gSbTGpBu8hIWH/view?usp=drivesdk
+
+## Link do vídeo da 2° aparesentação - 1° Tarefa da Residência 
+https://youtu.be/6ee2_0mJxi4
 
 ## 📌 Funcionalidades
 
@@ -189,6 +192,67 @@ void display_text_inicial() {
 ```
 Essa função exibe no display OLED a mensagem inicial para um breve tutorial.
 
+### 📟 Desenhar um ponto
+```cpp
+void draw_dot(uint8_t *ssd, int x, int y) {
+    // Desenha um pequeno ponto no display
+    for (int dx = 0; dx < 3; dx++) {
+        for (int dy = 0; dy < 3; dy++) {
+            ssd1306_set_pixel(ssd, x + dx, y + dy, true);
+
+        }
+    }
+}
+```
+Essa função desenha um ponto para aparecer no OLED
+
+### 📟 Desenhar um traço
+```cpp
+void draw_dash(uint8_t *ssd, int x, int y) {
+    // Desenha um traço (linha horizontal)
+    for (int dx = 0; dx < 8; dx++) {
+        ssd1306_set_pixel(ssd, x + dx, y, true);
+        ssd1306_set_pixel(ssd, x + dx, y + 1, true);
+    
+    }
+}
+```
+Essa função desenha um traço para aparecer no OLED
+
+### 📟 Exibe o código morse sendo feito no display OLED
+```cpp
+void display_morse_buffer() {
+    struct render_area frame_area = {
+        .start_column = 0,
+        .end_column = ssd1306_width - 1,
+        .start_page = 0,
+        .end_page = ssd1306_n_pages - 1
+    };
+    calculate_render_area_buffer_length(&frame_area);
+
+    uint8_t ssd[ssd1306_buffer_length];
+    memset(ssd, 0, ssd1306_buffer_length);
+
+    // Define a posição inicial
+    int x = 10, y = 20;
+
+    // Desenha cada caractere Morse na tela
+    for (int i = 0; i < buffer_index; i++) {
+        if (morse_buffer[i] == '.') {
+            draw_dot(ssd, x, y);
+            x += 6;  // Espaço após um ponto
+        } else if (morse_buffer[i] == '-') {
+            draw_dash(ssd, x, y);
+            x += 12;  // Espaço maior após um traço
+        }
+    }
+
+    render_on_display(ssd, &frame_area);
+    sleep_ms(100);
+}
+```
+Essa função exibe no display OLED o ponto e o traço, dependendo do código morse que foi criado, antes de traduzir-la para um caractere alfanumérico.
+
 ### 🔄 Função Principal
 ```cpp
 int main() {
@@ -222,6 +286,7 @@ int main() {
     absolute_time_t last_press_time = {0};  // Armazena o tempo da última pressão do botão
     char phrase[100] = "";  // Armazena a frase digitada
 
+    // Trecho do código principal onde o morse_buffer é atualizado
     while (true) {
         // Verifica o estado do botão 5 (entrada de código Morse)
         if (gpio_get(BUTTON_PIN) == 0) {  // Botão pressionado
@@ -244,6 +309,10 @@ int main() {
                 }
 
                 morse_buffer[buffer_index] = '\0';  // Finaliza a string no buffer
+
+                // Exibe o código Morse digitado no display
+                display_morse_buffer();  // Atualiza o display com o novo conteúdo do buffer
+
                 button_pressed = false;
             }
         }
@@ -290,7 +359,7 @@ int main() {
     return 0;
 }
 ```
-A função principal que mantém o sistema em execução, verificando os botões pressionados, tocando os sons do buzzer e atualizando o display OLED com a tradução correspondente. Se o botão do pino 5 for pressionado por menos de 299ms ele vai gerar um ".", e se for pressionado por mais de 299ms ele vai gerar um "-". Já o botão do pino 6 envia o código morse gerado para ser transformado em caractere, se esse botão do pino 6 for pressionado por mais de 1 segundo, ele vai gerar um espaço no display oled, assim sendo possível criar frases utilizando o código morse.
+A função principal que mantém o sistema em execução, verificando os botões pressionados, tocando os sons do buzzer e atualizando o display OLED com a tradução correspondente. Se o botão do pino 5 for pressionado por menos de 299ms ele vai gerar um "." no display OLED, e se for pressionado por mais de 299ms ele vai gerar um "-" no display OLED. Já o botão do pino 6 envia o código morse gerado para ser transformado em caractere, se esse botão do pino 6 for pressionado por mais de 1 segundo, ele vai gerar um espaço no display oled, assim sendo possível criar frases utilizando o código morse.
 
 ## Uso
 
